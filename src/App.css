@@ -1,0 +1,14 @@
+:root {
+    --dark-color : #17252A;
+    --back-color: #3AAFA9;
+    --dark-back-color: #2B7A78;
+    --gray-color: #DEF2F1;
+    --white-color: #FEFFFF;
+}
+
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--back-color);
+}
