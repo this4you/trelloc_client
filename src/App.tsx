@@ -1,13 +1,30 @@
 import { AuthPage } from 'pages';
-import logo from './logo.svg';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './App.css';
 
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#2B7A78',
+        },
+        secondary: {
+            main: '#DEF2F1',
+        },
+        text: {
+            primary: '#2B7A78',
+        },
+    },
+});
+
+
 function App() {
-  return (
-    <div className="app">
-        <AuthPage />
-    </div>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <div className="app">
+                <AuthPage />
+            </div>
+        </ThemeProvider>
+    );
 }
 
 export default App;

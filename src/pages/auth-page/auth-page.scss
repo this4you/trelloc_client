@@ -4,20 +4,25 @@
 }
 
 .auth-container {
-    width: 400px;
-    height: 500px;
-    padding:20px;
-    &_form {
-        background-color: var(--white-color);
-    }
+    width: 340px;
+    height: 380px;
+    padding: 50px;
+
     &_logo {
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 20%;
+
         span {
             font-size: 40px;
             font-weight: 600;
             color: var(--dark-back-color)
         }
+    }
+
+    &_form {
+        height: 80%;
+        background-color: var(--white-color);
     }
 }

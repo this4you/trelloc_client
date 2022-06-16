@@ -1,0 +1,18 @@
+.login {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+
+    &_input {
+        margin-bottom: 20px !important;
+    }
+
+    &_icons {
+        margin-top: 20px;
+    }
+    &_sing-up {
+        margin-top: 20px;
+    }
+}
