@@ -27,8 +27,8 @@ const Login = () => {
             {/* <Link to={'/register'}>Sign up</Link> */}
             <span className="login_sing-up">Sing up</span>
             <Stack className='login_icons' direction={'row'} justifyContent={'space-around'}>
-                <img src={googleIcon} alt="" width={50} height={50} />
-                <img src={githubIcon} alt="" width={50} height={50} />
+                <img src={googleIcon} alt=""/>
+                <img src={githubIcon} alt=""/>
             </Stack>
         </div>
     )

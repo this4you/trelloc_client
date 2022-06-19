@@ -9,10 +9,16 @@
         margin-bottom: 20px !important;
     }
 
-    &_icons {
-        margin-top: 20px;
-    }
     &_sing-up {
         margin-top: 20px;
+    }
+
+    &_icons {
+        margin-top: 20px;
+        img {
+            cursor: pointer;
+            height: 40px;
+            width: 40px;
+        }
     }
 }
