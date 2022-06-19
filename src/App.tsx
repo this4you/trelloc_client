@@ -2,6 +2,15 @@ import { AuthPage } from 'pages';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './App.css';
 
+import {
+    Routes,
+    Route,
+    Navigate,
+    BrowserRouter
+} from "react-router-dom";
+
+import { Login } from 'auth-module';
+
 const theme = createTheme({
     palette: {
         primary: {
@@ -19,11 +28,19 @@ const theme = createTheme({
 
 function App() {
     return (
-        <ThemeProvider theme={theme}>
-            <div className="app">
-                <AuthPage />
-            </div>
-        </ThemeProvider>
+        <div className="app">
+            <ThemeProvider theme={theme}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<AuthPage />}>
+                            <Route index element={<Login />} />
+                            <Route path="login" element={<Login />} />
+                            <Route path="*" element={<Navigate to="/login" replace />} />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </ThemeProvider>
+        </div>
     );
 }
 
