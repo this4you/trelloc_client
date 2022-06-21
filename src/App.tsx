@@ -9,7 +9,7 @@ import {
     BrowserRouter
 } from "react-router-dom";
 
-import { Login } from 'auth-module';
+import { Login, Register } from 'auth-module';
 
 const theme = createTheme({
     palette: {
@@ -35,6 +35,7 @@ function App() {
                         <Route path="/" element={<AuthPage />}>
                             <Route index element={<Login />} />
                             <Route path="login" element={<Login />} />
+                            <Route path="register" element={<Register />} />
                             <Route path="*" element={<Navigate to="/login" replace />} />
                         </Route>
                     </Routes>
