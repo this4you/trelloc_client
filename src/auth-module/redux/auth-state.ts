@@ -3,7 +3,7 @@ import { LoginType } from "auth-module/models/loginType"
 import { RegisterType } from "auth-module/models/resiterType"
 import { UserType } from "auth-module/models/userType"
 // import { userApi } from "../api"
-import { AUTH_LOCAL_STORAGE_TOKEN } from "providers"
+import { AUTH_LOCAL_STORAGE_TOKEN } from "core/providers"
 
 type AuthStateType = {
     user?: UserType,

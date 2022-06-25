@@ -1,4 +1,4 @@
-import { Logo } from "core";
+import { Logo } from "core/components";
 import Paper from '@mui/material/Paper';
 
 import './auth-page.scss';

@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 import { Login, Register } from 'auth-module';
-import { JWTInterceptorProvider } from 'providers';
+import { JWTInterceptorProvider } from 'core/providers';
 import store from 'redux/store';
 
 const theme = createTheme({

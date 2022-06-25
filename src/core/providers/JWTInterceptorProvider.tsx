@@ -12,8 +12,8 @@ const JWTInterceptorProvider = ({ children }: { children: JSX.Element | JSX.Elem
     const [isAxiosReady, setIsAxiosReady] = useState(false);
 
     const processMovieApiError = (response: any) => {
-        if (!response?.data?.error) return;
-        const errorCode = response.data.error.code;
+        // if (!response?.data?.error) return;
+        // const errorCode = response.data.error.code;
     }
 
 

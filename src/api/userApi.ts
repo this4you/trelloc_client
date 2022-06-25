@@ -1,4 +1,4 @@
-import { axios } from 'providers';
+import { axios } from 'core/providers';
 
 export type LoginModelType = {
 
