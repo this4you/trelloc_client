@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-// import { useSnackbar } from 'notistack';
-// import {formValidator} from '../utils';
+
 
 
 export const AUTH_LOCAL_STORAGE_TOKEN = 'auth_token';
@@ -9,15 +8,12 @@ export const instance =
     axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL as string });
 
 
-const AxiosInterceptorProvider = ({ children } : {children: JSX.Element | JSX.Element[]}) => {
+const JWTInterceptorProvider = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
     const [isAxiosReady, setIsAxiosReady] = useState(false);
-    // const { enqueueSnackbar } = useSnackbar();
 
     const processMovieApiError = (response: any) => {
         if (!response?.data?.error) return;
         const errorCode = response.data.error.code;
-        // const message = getErrorTextByMessage(errorCode);
-        // enqueueSnackbar(message, { variant: 'error' });
     }
 
 
@@ -58,7 +54,11 @@ const AxiosInterceptorProvider = ({ children } : {children: JSX.Element | JSX.El
 
     }, [])
 
-    return isAxiosReady ? children : <div></div>;
+    return (
+        <>
+            {isAxiosReady ? children : <div></div>}
+        </>
+    );
 }
 
-export default AxiosInterceptorProvider;
+export default JWTInterceptorProvider;

@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger';
 // import { moviesReducer } from './movieSlice';
-// import { userReducer } from './userSlice';
+ import { authReducer } from 'auth-module/redux/auth-state';
 
 
 const reducer = {
-    // movies: moviesReducer,
-    // user: userReducer
+    auth: authReducer
 };
 
 const store = configureStore({

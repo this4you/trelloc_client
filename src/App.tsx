@@ -1,7 +1,7 @@
 import { AuthPage } from 'pages';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './App.css';
-
+import { Provider as ReduxProvider } from 'react-redux'
 import {
     Routes,
     Route,
@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 
 import { Login, Register } from 'auth-module';
+import { JWTInterceptorProvider } from 'providers';
+import store from 'redux/store';
 
 const theme = createTheme({
     palette: {
@@ -31,14 +33,18 @@ function App() {
         <div className="app">
             <ThemeProvider theme={theme}>
                 <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<AuthPage />}>
-                            <Route index element={<Login />} />
-                            <Route path="login" element={<Login />} />
-                            <Route path="register" element={<Register />} />
-                            <Route path="*" element={<Navigate to="/login" replace />} />
-                        </Route>
-                    </Routes>
+                    <JWTInterceptorProvider>
+                        <ReduxProvider store={store}>
+                            <Routes>
+                                <Route path="/" element={<AuthPage />}>
+                                    <Route index element={<Login />} />
+                                    <Route path="login" element={<Login />} />
+                                    <Route path="register" element={<Register />} />
+                                    <Route path="*" element={<Navigate to="/login" replace />} />
+                                </Route>
+                            </Routes>
+                        </ReduxProvider>
+                    </JWTInterceptorProvider>
                 </BrowserRouter>
             </ThemeProvider>
         </div>
