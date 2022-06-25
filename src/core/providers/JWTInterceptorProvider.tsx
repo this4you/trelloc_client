@@ -1,12 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
+import { axios as instance } from 'core';
 
 
 export const AUTH_LOCAL_STORAGE_TOKEN = 'auth_token';
-export const instance =
-    axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL as string });
-
 
 const JWTInterceptorProvider = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
     const [isAxiosReady, setIsAxiosReady] = useState(false);
