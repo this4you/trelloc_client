@@ -1,11 +1,8 @@
 import { useState } from "react";
-// import { LoginUserModel, RegisterUserModel } from "../models";
-// import { userActions } from "../redux/userSlice";
 import { AUTH_LOCAL_STORAGE_TOKEN } from "core/providers";
 import useAppDispatch from "core/hooks/useAppDispatch";
 import { RegisterType } from "auth-module/models/resiterType";
 import { LoginType } from "auth-module/models/loginType";
-// import { useAppDispatch } from '../hooks';
 
 export type ProvideAuthModel = {
     session: string;
