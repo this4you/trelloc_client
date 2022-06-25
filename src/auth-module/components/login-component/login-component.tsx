@@ -4,14 +4,15 @@ import { useForm } from "react-hook-form";
 import googleIcon from 'svg/google.svg';
 import githubIcon from 'svg/github.svg';
 import { Link } from 'react-router-dom';
-
-export type LoginType = {
-    email: string;
-    password: string;
-}
+import { LoginType } from 'auth-module/models/loginType';
 
 const Login = () => {
     const { register, handleSubmit, setError, formState: { errors } } = useForm<LoginType>();
+
+    const onSubmit = handleSubmit(data => {
+        
+    });
+
     return (
         <form className="login">
             <TextField type={'email'} id="email" className="login_input" label="Email"

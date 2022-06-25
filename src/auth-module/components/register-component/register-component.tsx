@@ -1,14 +1,9 @@
 import { TextField, Button } from '@mui/material';
+import { RegisterType } from 'auth-module/models/resiterType';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import './register-component.scss';
 
-export type RegisterType =  {
-    name: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-}
 
 const Register = () => {
     const { register, handleSubmit, setError, formState: { errors } } = useForm<RegisterType>();
