@@ -5,16 +5,17 @@ import googleIcon from 'svg/google.svg';
 import githubIcon from 'svg/github.svg';
 import { Link } from 'react-router-dom';
 import { LoginType } from 'auth-module/models/loginType';
+import { useAuth } from 'auth-module/hooks';
 
 const Login = () => {
     const { register, handleSubmit, setError, formState: { errors } } = useForm<LoginType>();
-
+    const auth = useAuth();
     const onSubmit = handleSubmit(data => {
-        
+        auth.signIn(data);       
     });
 
     return (
-        <form className="login">
+        <form className="login" onSubmit={onSubmit}>
             <TextField type={'email'} id="email" className="login_input" label="Email"
                 variant="outlined"
                 {...register("email", { required: true, maxLength: 30 })}

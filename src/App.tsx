@@ -12,6 +12,7 @@ import {
 import { Login, Register } from 'auth-module';
 import { JWTInterceptorProvider } from 'core/providers';
 import store from 'redux/store';
+import { AuthProvider } from 'auth-module/providers';
 
 const theme = createTheme({
     palette: {
@@ -35,14 +36,16 @@ function App() {
                 <BrowserRouter>
                     <JWTInterceptorProvider>
                         <ReduxProvider store={store}>
-                            <Routes>
-                                <Route path="/" element={<AuthPage />}>
-                                    <Route index element={<Login />} />
-                                    <Route path="login" element={<Login />} />
-                                    <Route path="register" element={<Register />} />
-                                    <Route path="*" element={<Navigate to="/login" replace />} />
-                                </Route>
-                            </Routes>
+                            <AuthProvider>
+                                <Routes>
+                                    <Route path="/" element={<AuthPage />}>
+                                        <Route index element={<Login />} />
+                                        <Route path="login" element={<Login />} />
+                                        <Route path="register" element={<Register />} />
+                                        <Route path="*" element={<Navigate to="/login" replace />} />
+                                    </Route>
+                                </Routes>
+                            </AuthProvider>
                         </ReduxProvider>
                     </JWTInterceptorProvider>
                 </BrowserRouter>

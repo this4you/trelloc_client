@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { AUTH_LOCAL_STORAGE_TOKEN } from "core/providers";
+import { useEffect, useState } from "react";
+// import { AUTH_LOCAL_STORAGE_TOKEN } from "core/providers";
 import useAppDispatch from "core/hooks/useAppDispatch";
 import { RegisterType } from "auth-module/models/resiterType";
 import { LoginType } from "auth-module/models/loginType";
+import { authActions } from "auth-module/redux/auth-state";
 
 export type ProvideAuthModel = {
-    session: string;
+    isAuth: boolean;
     signUp: Function;
     signIn: Function;
     logOut: Function;
@@ -13,38 +14,42 @@ export type ProvideAuthModel = {
 
 const useProvideAuth = (): ProvideAuthModel => {
 
-    const [session, setSession] = useState(localStorage.getItem(AUTH_LOCAL_STORAGE_TOKEN) ?? "");
+    const [isAuth, setIsAuth] = useState(false);
+
+    useEffect(() => {
+        dispatch(authActions.info()).then(action => {
+            debugger
+            setIsAuth(action.payload as boolean);
+        })
+    }, [])
 
     const dispatch = useAppDispatch();
 
-    
+
     const signUp = (registerData: RegisterType) => {
-        // return dispatch(
-        //     userActions.register(registerData))
-        //     .then(data => {
-        //         const token = data?.payload?.token || "";
-        //         setSession(token);
-        //         return data;
-        //     });
+        return dispatch(authActions.register(registerData))
+            .then(data => {
+                debugger
+                setIsAuth(true);
+                return data;
+            })
     };
 
     const signIn = (loginData: LoginType) => {
-        // return dispatch(
-        //     userActions.login(loginData))
-        //     .then(data => {
-        //         const token = data?.payload?.token || "";
-        //         setSession(token);
-        //         return data;
-        //     });
+        return dispatch(authActions.login(loginData))
+            .then(data => {
+                debugger
+                setIsAuth(true);
+                return data;
+            })
     };
 
     const logOut = () => {
-        setSession("");
-        localStorage.setItem(AUTH_LOCAL_STORAGE_TOKEN, "");
+        
     }
 
     return {
-        session,
+        isAuth,
         signUp,
         signIn,
         logOut
