@@ -9,9 +9,12 @@ import { stat } from "fs";
 type AuthStateType = {
     user?: UserType,
     errors?: any, //TODO
+    initialized: boolean
 }
 
-const initialState: AuthStateType = {}
+const initialState: AuthStateType = {
+    initialized: false
+}
 
 const register = createAsyncThunk(
     'auth/singUp',
@@ -52,8 +55,14 @@ const usersSlice = createSlice({
         });
 
         builder.addCase(info.fulfilled, (state, action) => {
+            state.initialized = true;
             state.user = action.payload;
         });
+
+        builder.addCase(info.rejected, (state, action) => {
+            state.initialized = true;
+        });
+
     },
 })
 

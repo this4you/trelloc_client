@@ -15,15 +15,8 @@ export type ProvideAuthModel = {
 const useProvideAuth = (): ProvideAuthModel => {
 
     const [isAuth, setIsAuth] = useState(false);
-
-    useEffect(() => {
-        dispatch(authActions.info()).then(action => {
-            debugger
-            setIsAuth(action.payload as boolean);
-        })
-    }, [])
-
     const dispatch = useAppDispatch();
+
 
 
     const signUp = (registerData: RegisterType) => {
@@ -45,7 +38,7 @@ const useProvideAuth = (): ProvideAuthModel => {
     };
 
     const logOut = () => {
-        
+
     }
 
     return {

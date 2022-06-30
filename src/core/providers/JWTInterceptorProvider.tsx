@@ -16,19 +16,12 @@ const JWTInterceptorProvider = ({ children }: { children: JSX.Element | JSX.Elem
     useEffect(() => {
 
         const reqInterceptor = (request: any) => {
-            const token = localStorage.getItem(AUTH_LOCAL_STORAGE_TOKEN);
-            if (token) {
-                request.headers.common["Authorization"] = token;
-            }
+            console.log("Request interceptor");
             return request;
         }
 
         const resInterceptor = (response: any) => {
-            processMovieApiError(response);
-            if (response?.data?.error?.code === "WRONG_TOKEN") { // look at status
-                localStorage.setItem(AUTH_LOCAL_STORAGE_TOKEN, "");
-                window.location.reload();
-            }
+            console.log("Response interceptor");
             return response;
         }
 
