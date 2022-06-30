@@ -10,6 +10,7 @@ import { useAuth } from 'auth-module/hooks';
 const Login = () => {
     const { register, handleSubmit, setError, formState: { errors } } = useForm<LoginType>();
     const auth = useAuth();
+    console.log("IS_AUTH", auth.isAuth);
     const onSubmit = handleSubmit(data => {
         auth.signIn(data);       
     });

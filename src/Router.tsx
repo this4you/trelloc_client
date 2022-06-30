@@ -13,11 +13,11 @@ import HomePage from 'pages/home-page/home-page';
 import { useAuth } from 'auth-module/hooks';
 
 const PrivateRoute = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
-    const { isAuth } = useAuth();
-    console.log(isAuth + " IS AUTH")
+    const auth = useAuth();
+    console.log(auth.isAuth + " IS AUTH FROM PRIVATE ROUTE")
     return (
         <>
-            {isAuth ? children : <Navigate to="/login" />}
+            {auth.isAuth ? children : <Navigate to="/login" />}
         </>
     )
     //  return auth ? children : <Navigate to="/login" />;

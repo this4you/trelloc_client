@@ -10,6 +10,7 @@ export type ProvideAuthModel = {
     signUp: Function;
     signIn: Function;
     logOut: Function;
+    info: Function;
 };
 
 const useProvideAuth = (): ProvideAuthModel => {
@@ -22,7 +23,6 @@ const useProvideAuth = (): ProvideAuthModel => {
     const signUp = (registerData: RegisterType) => {
         return dispatch(authActions.register(registerData))
             .then(data => {
-                debugger
                 setIsAuth(true);
                 return data;
             })
@@ -31,7 +31,6 @@ const useProvideAuth = (): ProvideAuthModel => {
     const signIn = (loginData: LoginType) => {
         return dispatch(authActions.login(loginData))
             .then(data => {
-                debugger
                 setIsAuth(true);
                 return data;
             })
@@ -41,11 +40,21 @@ const useProvideAuth = (): ProvideAuthModel => {
 
     }
 
+    const info = () => {
+        return dispatch(authActions.info())
+            .then((data: any) => {
+                
+                setIsAuth(!data.error);
+                return data;
+            })
+    }
+
     return {
         isAuth,
         signUp,
         signIn,
-        logOut
+        logOut,
+        info
     };
 }
 
