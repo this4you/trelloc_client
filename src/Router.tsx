@@ -18,6 +18,14 @@ const PrivateRoute = ({ children }: { children: JSX.Element | JSX.Element[] }): 
         </>
     )
 }
+const OnlyUnAuthRoute = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
+    const auth = useAuth();
+    return (
+        <>
+            {auth.isAuth ? <Navigate to="/home" /> : children}
+        </>
+    )
+}
 
 function Router() {
     return (
@@ -27,7 +35,11 @@ function Router() {
                     <HomePage />
                 </PrivateRoute>}
             />
-            <Route path="/" element={<AuthPage />}>
+            <Route path="/" element={
+                <OnlyUnAuthRoute>
+                    <AuthPage />
+                </OnlyUnAuthRoute>
+            }>
                 <Route index element={<Login />} />
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
