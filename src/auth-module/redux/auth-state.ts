@@ -1,15 +1,19 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, isRejected } from "@reduxjs/toolkit"
 import { LoginType } from "auth-module/models/loginType"
 import { RegisterType } from "auth-module/models/resiterType"
 import { UserType } from "auth-module/models/userType"
 import { authApi } from 'api';
+import { isFulfilledAction, isPendingAction, isRejectAction } from "redux/utils";
 
 type AuthStateType = {
+    loading: boolean,
     user?: UserType,
     errors?: any, //TODO
 }
 
-const initialState: AuthStateType = {}
+const initialState: AuthStateType = {
+    loading: false
+}
 
 const register = createAsyncThunk(
     'auth/singUp',
@@ -41,17 +45,19 @@ const usersSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(register.rejected, (state, action) => {
-            state.errors = action.payload;
-        });
-
-        builder.addCase(login.rejected, (state, action) => {
-            state.errors = action.payload;
-        });
-
         builder.addCase(info.fulfilled, (state, action) => {
             state.user = action.payload;
         });
+        builder.addMatcher(isPendingAction, (state, action) => {
+            state.loading = true;
+        })
+        builder.addMatcher(isFulfilledAction, (state, action) => {
+            state.loading = false;
+        })
+        builder.addMatcher(isRejectAction, (state, action) => {
+            state.errors = action.payload;
+            state.loading = false;
+        })
     },
 })
 
