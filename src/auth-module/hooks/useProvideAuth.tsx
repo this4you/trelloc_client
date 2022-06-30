@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-// import { AUTH_LOCAL_STORAGE_TOKEN } from "core/providers";
+import {useState } from "react";
 import useAppDispatch from "core/hooks/useAppDispatch";
 import { RegisterType } from "auth-module/models/resiterType";
 import { LoginType } from "auth-module/models/loginType";
@@ -43,7 +42,6 @@ const useProvideAuth = (): ProvideAuthModel => {
     const info = () => {
         return dispatch(authActions.info())
             .then((data: any) => {
-                
                 setIsAuth(!data.error);
                 return data;
             })

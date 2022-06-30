@@ -1,7 +1,5 @@
 import { AuthPage } from 'pages';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './App.css';
-import { Provider as ReduxProvider } from 'react-redux'
 import {
     Routes,
     Route,
@@ -14,13 +12,11 @@ import { useAuth } from 'auth-module/hooks';
 
 const PrivateRoute = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
     const auth = useAuth();
-    console.log(auth.isAuth + " IS AUTH FROM PRIVATE ROUTE")
     return (
         <>
             {auth.isAuth ? children : <Navigate to="/login" />}
         </>
     )
-    //  return auth ? children : <Navigate to="/login" />;
 }
 
 function Router() {

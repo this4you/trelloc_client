@@ -2,17 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { axios as instance } from 'core';
 
 
-export const AUTH_LOCAL_STORAGE_TOKEN = 'auth_token';
 
 const JWTInterceptorProvider = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
     const [isAxiosReady, setIsAxiosReady] = useState(false);
-
-    const processMovieApiError = (response: any) => {
-        // if (!response?.data?.error) return;
-        // const errorCode = response.data.error.code;
-    }
-
-
     useEffect(() => {
 
         const reqInterceptor = (request: any) => {

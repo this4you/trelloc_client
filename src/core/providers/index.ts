@@ -1,2 +1,2 @@
 export {default as JWTInterceptorProvider} from './JWTInterceptorProvider';
-export {AUTH_LOCAL_STORAGE_TOKEN} from './JWTInterceptorProvider';
+export {default as InitAuthDefenceProvider} from './InitAuthDefenceProvider';

@@ -3,18 +3,13 @@ import { LoginType } from "auth-module/models/loginType"
 import { RegisterType } from "auth-module/models/resiterType"
 import { UserType } from "auth-module/models/userType"
 import { authApi } from 'api';
-import { AUTH_LOCAL_STORAGE_TOKEN } from "core/providers"
-import { stat } from "fs";
 
 type AuthStateType = {
     user?: UserType,
     errors?: any, //TODO
-    initialized: boolean
 }
 
-const initialState: AuthStateType = {
-    initialized: false
-}
+const initialState: AuthStateType = {}
 
 const register = createAsyncThunk(
     'auth/singUp',
@@ -55,14 +50,8 @@ const usersSlice = createSlice({
         });
 
         builder.addCase(info.fulfilled, (state, action) => {
-            state.initialized = true;
             state.user = action.payload;
         });
-
-        builder.addCase(info.rejected, (state, action) => {
-            state.initialized = true;
-        });
-
     },
 })
 
