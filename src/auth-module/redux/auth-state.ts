@@ -48,10 +48,10 @@ const usersSlice = createSlice({
         builder.addCase(info.fulfilled, (state, action) => {
             state.user = action.payload;
         });
-        builder.addMatcher(isPendingAction, (state, action) => {
+        builder.addMatcher(isPendingAction, (state) => {
             state.loading = true;
         })
-        builder.addMatcher(isFulfilledAction, (state, action) => {
+        builder.addMatcher(isFulfilledAction, (state) => {
             state.loading = false;
         })
         builder.addMatcher(isRejectAction, (state, action) => {
