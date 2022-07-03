@@ -2,14 +2,14 @@ import {useState } from "react";
 import useAppDispatch from "core/hooks/useAppDispatch";
 import { RegisterType } from "auth-module/models/resiterType";
 import { LoginType } from "auth-module/models/loginType";
-import { authActions } from "auth-module/redux/auth-state";
+import { register, login, info } from "auth-module/redux/auth-state";
 
 export type ProvideAuthModel = {
     isAuth: boolean;
     signUp: Function;
     signIn: Function;
     logOut: Function;
-    info: Function;
+    initUserInfo: Function;
 };
 
 const useProvideAuth = (): ProvideAuthModel => {
@@ -20,7 +20,7 @@ const useProvideAuth = (): ProvideAuthModel => {
 
 
     const signUp = (registerData: RegisterType) => {
-        return dispatch(authActions.register(registerData))
+        return dispatch(register(registerData))
             .then(data => {
                 // setIsAuth(true);
                 return data;
@@ -28,7 +28,7 @@ const useProvideAuth = (): ProvideAuthModel => {
     };
 
     const signIn = (loginData: LoginType) => {
-        return dispatch(authActions.login(loginData))
+        return dispatch(login(loginData))
             .then(data => {
                 // setIsAuth(true);
                 return data;
@@ -39,8 +39,8 @@ const useProvideAuth = (): ProvideAuthModel => {
 
     }
 
-    const info = () => {
-        return dispatch(authActions.info())
+    const initUserInfo = () => {
+        return dispatch(info())
             .then((data: any) => {
                 setIsAuth(!data.error);
                 return data;
@@ -52,7 +52,7 @@ const useProvideAuth = (): ProvideAuthModel => {
         signUp,
         signIn,
         logOut,
-        info
+        initUserInfo
     };
 }
 

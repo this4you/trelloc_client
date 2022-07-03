@@ -4,6 +4,7 @@ import { RegisterType } from "auth-module/models/resiterType"
 import { UserType } from "auth-module/models/userType"
 import { authApi } from 'api';
 import { isFulfilledAction, isPendingAction, isRejectAction } from "redux/utils";
+import { RootState } from "redux/store";
 
 type AuthStateType = {
     loading: boolean,
@@ -15,7 +16,7 @@ const initialState: AuthStateType = {
     loading: false
 }
 
-const register = createAsyncThunk(
+export const register = createAsyncThunk(
     'auth/singUp',
     async (model: RegisterType) => {
         const response = await authApi.signUp(model);
@@ -23,7 +24,7 @@ const register = createAsyncThunk(
     }
 )
 
-const login = createAsyncThunk(
+export const login = createAsyncThunk(
     'auth/login',
     async (model: LoginType) => {
         const response = await authApi.signIn(model);
@@ -31,7 +32,7 @@ const login = createAsyncThunk(
     }
 )
 
-const info = createAsyncThunk(
+export const info = createAsyncThunk(
     'auth/info',
     async () => {
         const response = await authApi.info();
@@ -61,9 +62,6 @@ const usersSlice = createSlice({
     },
 })
 
+export const selectAuth = (state: RootState) => state.auth;
+
 export const authReducer = usersSlice.reducer;
-export const authActions = {
-    register,
-    login,
-    info
-};

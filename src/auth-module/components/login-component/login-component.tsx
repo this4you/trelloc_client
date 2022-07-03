@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom';
 import { LoginType } from 'auth-module/models/loginType';
 import { useAuth } from 'auth-module/hooks';
 import { useAppSelector } from 'core/hooks';
+import { selectAuth } from 'auth-module/redux/auth-state';
 
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<LoginType>();
     const auth = useAuth();
-    const { loading } = useAppSelector(s => s.auth);
+    const { loading } = useAppSelector(selectAuth);
     const onSubmit = handleSubmit(data => {
         auth.signIn(data);
     });
@@ -31,7 +32,7 @@ const Login = () => {
                 {...register("password", { required: true, maxLength: { value: 20, message: "Max length 20" } })}
                 error={!!errors.password}
             />
-            <LoadingButton loading={loading} type="submit" variant="contained" color="primary">Sing IN</LoadingButton>
+            <LoadingButton name="submit" loading={loading} type="submit" variant="contained" color="primary">Sing IN</LoadingButton>
             <Link className="login_sing-up" to={'/register'}>Sign up</Link>
             <Stack className='login_icons' direction={'row'} justifyContent={'space-around'}>
                 <img src={googleIcon} alt="" />

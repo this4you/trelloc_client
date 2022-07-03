@@ -5,7 +5,7 @@ const InitAuthDefenceProvider = ({ children }: { children: JSX.Element | JSX.Ele
     const auth = useAuth();
     const [initialized, setInitialized] = useState(false);
     useEffect(() => {
-        auth.info().then(() => {
+        auth.initUserInfo().then(() => {
             setInitialized(true);
         });
     }, [])
