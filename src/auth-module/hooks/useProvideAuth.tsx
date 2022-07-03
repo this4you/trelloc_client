@@ -22,7 +22,7 @@ const useProvideAuth = (): ProvideAuthModel => {
     const signUp = (registerData: RegisterType) => {
         return dispatch(authActions.register(registerData))
             .then(data => {
-                setIsAuth(true);
+                // setIsAuth(true);
                 return data;
             })
     };
@@ -30,7 +30,7 @@ const useProvideAuth = (): ProvideAuthModel => {
     const signIn = (loginData: LoginType) => {
         return dispatch(authActions.login(loginData))
             .then(data => {
-                setIsAuth(true);
+                // setIsAuth(true);
                 return data;
             })
     };

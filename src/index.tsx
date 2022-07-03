@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { JWTInterceptorProvider } from 'core/providers';
+import { AxiosInterceptorProvider } from 'core/providers';
 import { BrowserRouter } from 'react-router-dom';
 import store from 'redux/store';
 
@@ -29,11 +29,11 @@ const theme = createTheme({
 root.render(
     <ThemeProvider theme={theme}>
         <BrowserRouter>
-            <JWTInterceptorProvider>
+            <AxiosInterceptorProvider>
                 <ReduxProvider store={store}>
                     <App />
                 </ReduxProvider>
-            </JWTInterceptorProvider>
+            </AxiosInterceptorProvider>
         </BrowserRouter>
     </ThemeProvider>
 );
